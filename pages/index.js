@@ -236,14 +236,14 @@ const Home = ({ products, collections }) => {
           </Column2>
         </Box>
       </Container>
-      {collections.map((collection) => {
+      {collections.map((collection, index) => {
         const product = collection.products[0];
 
         return (
-          <Section4Boxes key={product.id}>
+          <Section4Boxes key={index}>
             <Link href={`/product/${product.handle}`}>
               <Box1>
-                <h2>hello</h2>
+                <h2>hellhhvhvo</h2>
               </Box1>
             </Link>
 
@@ -255,7 +255,7 @@ const Home = ({ products, collections }) => {
             </Box1>
             <Link href="http://localhost:3000/collection/new-arrival">
               <Box1>
-                <h2>hello</h2>
+                <h2>hellojj</h2>
               </Box1>
             </Link>
             <hoidoei>{collection.title}</hoidoei>
@@ -264,7 +264,6 @@ const Home = ({ products, collections }) => {
       })}
       <Trending>Tranding Now</Trending>
       <Find>Find the perfect peace or accessory to finish your outfit</Find>
-      {/* <Product4Box /> */}
       <Footer />
     </>
   );
