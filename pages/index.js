@@ -2,6 +2,7 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+// import Product4Box from "../components/Product4Box";
 import React from "react";
 import { useEffect, useState } from "react";
 import client from "../Shopify/Shopify";
@@ -133,7 +134,37 @@ const Find = styled.div`
   align-items: center;
   justify-content: center;
   padding: 10px;
-  margin-bottom: 10rem;
+  margin-bottom: 3rem;
+`;
+const Section4Boxes = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+`;
+
+const Box1 = styled.div`
+  background-image: url("home.png");
+  width: 100%;
+  height: 300px;
+  /* background-color: blue; */
+  padding: 10px;
+  margin: 20px;
+  box-sizing: border-box;
+  font-size: 30px;
+  flex-flow: wrap;
+  cursor: pointer;
+  @media screen and (max-width: 1200px) {
+    width: 92%;
+  }
+`;
+
+const hoidoei = styled.div`
+  height: 300px;
 `;
 
 const Home = ({ products, collections }) => {
@@ -143,10 +174,12 @@ const Home = ({ products, collections }) => {
       if (collection.title === "New Arrival") {
         setNewArrival(collection);
       }
+
       console.log({ products, collection });
       console.log(newArrival);
     });
   }, []);
+
   return (
     <>
       <Navbar />
@@ -203,9 +236,35 @@ const Home = ({ products, collections }) => {
           </Column2>
         </Box>
       </Container>
+      {collections.map((collection) => {
+        const product = collection.products[0];
 
+        return (
+          <Section4Boxes key={product.id}>
+            <Link href={`/product/${product.handle}`}>
+              <Box1>
+                <h2>hello</h2>
+              </Box1>
+            </Link>
+
+            <Box1>
+              <h2>hello</h2>
+            </Box1>
+            <Box1>
+              <h2>hello</h2>
+            </Box1>
+            <Link href="http://localhost:3000/collection/new-arrival">
+              <Box1>
+                <h2>hello</h2>
+              </Box1>
+            </Link>
+            <hoidoei>{collection.title}</hoidoei>
+          </Section4Boxes>
+        );
+      })}
       <Trending>Tranding Now</Trending>
       <Find>Find the perfect peace or accessory to finish your outfit</Find>
+      {/* <Product4Box /> */}
       <Footer />
     </>
   );
