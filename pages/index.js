@@ -163,8 +163,11 @@ const Box1 = styled.div`
   }
 `;
 
-const hoidoei = styled.div`
-  height: 300px;
+const Hoidoei = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Home = ({ products, collections }) => {
@@ -236,11 +239,15 @@ const Home = ({ products, collections }) => {
           </Column2>
         </Box>
       </Container>
+      <Trending>Tranding Now</Trending>
+      <Find>Find the perfect peace or accessory to finish your outfit</Find>
       {collections.map((collection, index) => {
         const product = collection.products[0];
 
         return (
           <Section4Boxes key={index}>
+            {/* <Hoidoei>{collection.title}</Hoidoei> */}
+
             <Link href={`/product/${product.handle}`}>
               <Box1>
                 <h2>hellhhvhvo</h2>
@@ -258,12 +265,50 @@ const Home = ({ products, collections }) => {
                 <h2>hellojj</h2>
               </Box1>
             </Link>
-            <hoidoei>{collection.title}</hoidoei>
           </Section4Boxes>
         );
       })}
-      <Trending>Tranding Now</Trending>
+
+      {/*
+      
+      
+      */}
+
+      <Trending>New Items </Trending>
       <Find>Find the perfect peace or accessory to finish your outfit</Find>
+
+      {/* 
+      
+      */}
+
+      {collections.map((collection, index) => {
+        const product = collection.products[0];
+
+        return (
+          <Section4Boxes key={index}>
+            {/* <Hoidoei>{collection.title}</Hoidoei> */}
+
+            <Link href={`/product/${product.handle}`}>
+              <Box1>
+                <h2>hellhhvhvo</h2>
+              </Box1>
+            </Link>
+
+            <Box1>
+              <h2>hello</h2>
+            </Box1>
+            <Box1>
+              <h2>hello</h2>
+            </Box1>
+            <Link href="http://localhost:3000/collection/new-arrival">
+              <Box1>
+                <h2>hellojj</h2>
+              </Box1>
+            </Link>
+          </Section4Boxes>
+        );
+      })}
+
       <Footer />
     </>
   );
