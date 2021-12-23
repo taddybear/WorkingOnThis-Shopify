@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { FaShoppingCart } from "react-icons/fa";
 const Nav = styled.nav`
   height: 80px;
   background: black;
@@ -13,6 +14,8 @@ const StyledLink = styled.a`
   padding: 0rem 2rem;
 `;
 
+const style = { color: "white", fontSize: "1em", padding: 2, width: 20 };
+
 const Navbar = () => {
   return (
     <Nav>
@@ -23,14 +26,17 @@ const Navbar = () => {
       </div>
       <div>
         <Link href="/" passHref>
-          <StyledLink>Home</StyledLink>
+          <StyledLink>Contact</StyledLink>
         </Link>
 
         <Link href="/" passHref>
-          <StyledLink>Home</StyledLink>
+          <StyledLink>About</StyledLink>
         </Link>
-        <Link href="/" passHref>
-          <StyledLink>Home</StyledLink>
+        <Link href="/cart" passHref>
+          <StyledLink>
+            Cart
+            <FaShoppingCart style={style} />
+          </StyledLink>
         </Link>
       </div>
     </Nav>

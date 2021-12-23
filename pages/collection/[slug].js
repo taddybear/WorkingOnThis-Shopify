@@ -23,7 +23,14 @@ const CollectionPage = ({ collection }) => {
             <Link href={`/product/${item.handle}`}>
               <Card
                 title={item.title}
-                cover={<img alt="example" src={item.images[0].src} />}
+                cover={
+                  <img
+                    alt="example"
+                    src={item.images[0].src}
+                    width="200"
+                    height="200"
+                  />
+                }
               >
                 <Paragraph
                   ellipsis={{

@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import styled from "styled-components";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -122,11 +122,9 @@ const getDataFromStorage = (key) => {
 };
 const setDataToStorage = (key, data) => {
   const storage = window.localStorage;
-  return JSON.parse(storage.setItem(key, JSON.stringify(data)));
+  storage.setItem(key, JSON.stringify(data));
 };
 const ProductPage = ({ product }) => {
-  console.log({ product });
-  // console.log({ checkout });
   const [amount, setAmount] = useState(1);
   const [checkout, setCheckout] = useState(null);
   const [checkoutAsItem, setCheckoutAsItem] = useState(false);
@@ -138,6 +136,7 @@ const ProductPage = ({ product }) => {
         tempCheckout.lineItems.forEach((lineItem) => {
           if (lineItem.title === product.title) {
             setAmount(lineItem.quantity);
+            checkoutAsItem(true);
           }
         });
 
@@ -174,7 +173,6 @@ const ProductPage = ({ product }) => {
       console.log(error);
     }
   };
-
   const updateCheckout = async () => {
     try {
       const [lineItem] = checkout.lineItems.filter(
@@ -194,7 +192,7 @@ const ProductPage = ({ product }) => {
         checkoutId,
         lineItemToUpdate
       );
-      console.log(parseData(tempCheckout));
+      setDataToStorage("checkout", tempCheckout);
     } catch (error) {
       console.log(error);
     }
@@ -203,7 +201,6 @@ const ProductPage = ({ product }) => {
     <div>
       <Navbar />
 
-      {/* <div>hello this is product page{productId}</div> */}
       <TotalColum>
         <Left>
           <Image
@@ -244,7 +241,7 @@ const ProductPage = ({ product }) => {
           width="100"
           height="100"
           fill="responsive"
-          src={product.images[1].src}
+          src={product.images[0].src}
         />
         <Image
           width="100"
@@ -267,12 +264,10 @@ const ProductPage = ({ product }) => {
 export async function getServerSideProps(context) {
   const { slug } = context.params;
   const product = await client.product.fetchByHandle(slug);
-  const checkout = await client.checkout.create();
 
   return {
     props: {
       product: JSON.parse(JSON.stringify(product)),
-      checkout: JSON.parse(JSON.stringify(checkout)),
     },
   };
 }

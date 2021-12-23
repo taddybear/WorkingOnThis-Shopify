@@ -163,13 +163,6 @@ const Box1 = styled.div`
   }
 `;
 
-const Hoidoei = styled.div`
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const Home = ({ products, collections }) => {
   const [newArrival, setNewArrival] = useState({});
   useEffect(() => {
@@ -242,7 +235,7 @@ const Home = ({ products, collections }) => {
       <Trending>Tranding Now</Trending>
       <Find>Find the perfect peace or accessory to finish your outfit</Find>
       {collections.map((collection, index) => {
-        const product = collection.products[0];
+        const product = collection.products;
 
         return (
           <Section4Boxes key={index}>
@@ -250,7 +243,7 @@ const Home = ({ products, collections }) => {
 
             <Link href={`/product/${product.handle}`}>
               <Box1>
-                <h2>hellhhvhvo</h2>
+                <h2></h2>
               </Box1>
             </Link>
 
@@ -282,7 +275,7 @@ const Home = ({ products, collections }) => {
       */}
 
       {collections.map((collection, index) => {
-        const product = collection.products[0];
+        const product = collection.products;
 
         return (
           <Section4Boxes key={index}>
@@ -290,7 +283,7 @@ const Home = ({ products, collections }) => {
 
             <Link href={`/product/${product.handle}`}>
               <Box1>
-                <h2>hellhhvhvo</h2>
+                <h2></h2>
               </Box1>
             </Link>
 
