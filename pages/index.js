@@ -9,65 +9,6 @@ import client from "../Shopify/Shopify";
 import styled from "styled-components";
 import Link from "next/link";
 
-const ContentBox = styled.div`
-  display: flex;
-  gap: 0.25rem;
-  padding: 0.25rem;
-  height: 100%;
-  align-items: center;
-  grid-area: content;
-  justify-content: center;
-  @media (max-width: 550px) {
-    flex-direction: column;
-  }
-`;
-const Content1 = styled.div`
-  width: 100vw;
-  height: 45vw;
-  display: flex;
-  background-color: white;
-
-  justify-content: center;
-  position: relative;
-  color: black;
-
-  @media only Screen and (max-width: 48em) {
-    height: 70vw;
-    display: block;
-  }
-`;
-
-const Content2 = styled.div`
-  background-image: url("home.png");
-  width: 100vw;
-  height: 45vw;
-
-  display: flex;
-  justify-content: center;
-  position: relative;
-  @media only Screen and (max-width: 48em) {
-    height: 70vw;
-    display: block;
-  }
-`;
-
-const Help = styled.div`
-  position: absolute;
-  left: 0;
-`;
-
-const Button = styled.button`
-  /* Adapt the colors based on primary prop */
-  color: black;
-  background: white;
-  position: absolute;
-  bottom: 3rem;
-  font-size: 2em;
-  border-radius: 3px;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Container = styled.div`
   display: flex;
   @media only screen and (max-width: 900px) {
@@ -99,10 +40,27 @@ const Text1234 = styled.div`
 
 const Box = styled.div`
   background: #fff;
-  background-image: url("home.png");
-  padding: 100px 0;
+  background-image: url("/af689587-900x900.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 150px 0;
   border-radius: 12px;
   margin: 1rem;
+`;
+
+const BoxPic2 = styled.div`
+  background: #fff;
+  background-image: url("/1014ef99-900x900.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 150px 0;
+  border-radius: 12px;
+  margin: 1rem;
+`;
+
+const DivOverall = styled.div`
+  width: 550px;
+  height: 500px;
 `;
 
 const Column2 = styled.div`
@@ -139,6 +97,7 @@ const Find = styled.div`
 const Section4Boxes = styled.div`
   width: 100%;
   height: auto;
+
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -162,6 +121,21 @@ const Box1 = styled.div`
     width: 92%;
   }
 `;
+const Box12 = styled.div`
+  background-image: url("/af689587-900x900.jpeg");
+  width: 100%;
+  height: 300px;
+  /* background-color: blue; */
+  padding: 10px;
+  margin: 20px;
+  box-sizing: border-box;
+  font-size: 30px;
+  flex-flow: wrap;
+  cursor: pointer;
+  @media screen and (max-width: 1200px) {
+    width: 92%;
+  }
+`;
 
 const Home = ({ products, collections }) => {
   const [newArrival, setNewArrival] = useState({});
@@ -172,7 +146,17 @@ const Home = ({ products, collections }) => {
       }
 
       console.log({ products, collection });
-      console.log(newArrival);
+    });
+  }, []);
+
+  const [whiteShoes, setWhiteShoes] = useState({});
+  useEffect(() => {
+    collections.forEach((collection) => {
+      if (collection.title === "White Shoes") {
+        setWhiteShoes(collection);
+      }
+
+      console.log({ products, collection });
     });
   }, []);
 
@@ -181,126 +165,129 @@ const Home = ({ products, collections }) => {
       <Navbar />
       <Hero />
       <Container>
-        <Box>
-          <Column1>
-            <h1>What is Lorem Ipsum?</h1>
-            <p>
+        <DivOverall>
+          <Box>
+            <Column1>
+              <h1>New Items</h1>
+              {/* <p>
+                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
+                printing and
+              </p> */}
+              <Text123>
+                <p>This is for you</p>
+              </Text123>
+              <Link href={`/collection/${newArrival.handle}`}>
+                <Button1>
+                  {newArrival.products && newArrival.products.length}Items
+                </Button1>
+              </Link>
+              <Text1234>
+                <p>$200</p>
+              </Text1234>
+            </Column1>
+          </Box>
+        </DivOverall>
+        <DivOverall>
+          <BoxPic2>
+            <Column2>
+              <h1>Hot Items</h1>
+              {/* <p>
               What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-              printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since the 1500s, when an
-              unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but
-              also the leap into electronic typesetting, remaining essentially
-              unchanged
-            </p>
-            <Text123>
-              <p>This is for you</p>
-            </Text123>
-            <Link href={`/collection/${newArrival.handle}`}>
-              <Button1>
-                {newArrival.products && newArrival.products.length}Items
-              </Button1>
-            </Link>
-            <Text1234>
-              <p>$200</p>
-            </Text1234>
-          </Column1>
-        </Box>
-        <Box>
-          <Column2>
-            <h1>What is Lorem Ipsum?</h1>
-            <p>
-              What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-              printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since the 1500s, when an
-              unknown printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries, but
-              also the leap into electronic typesetting, remaining essentially
-              unchanged
-            </p>
-            <Text123>
-              <p>This is for you</p>
-            </Text123>
-            <Link href={`/collection/${newArrival.handle}`}>
-              <Button1>
-                {newArrival.products && newArrival.products.length}Items
-              </Button1>
-            </Link>
-            <Text1234>
-              <p>$200</p>
-            </Text1234>
-          </Column2>
-        </Box>
+              printing and
+            </p> */}
+              <Text123>
+                <p>This is for you</p>
+              </Text123>
+              <Link href={`/collection/${whiteShoes.handle}`}>
+                <Button1>
+                  {whiteShoes.products && whiteShoes.products.length}Items
+                </Button1>
+              </Link>
+              <Text1234>
+                <p>$200</p>
+              </Text1234>
+            </Column2>
+          </BoxPic2>
+        </DivOverall>
       </Container>
       <Trending>Tranding Now</Trending>
       <Find>Find the perfect peace or accessory to finish your outfit</Find>
-      {collections.map((collection, index) => {
+      {/* {collections.map((collection, index) => {
         const product = collection.products;
 
         return (
+          //   <Section4Boxes key={index}>
+          //     <Link href={`/product/${product.handle}`}>
+          //       <Box1>
+          //         <h2></h2>
+          //       </Box1>
+          //     </Link>
+
+          //     <Box1>
+          //       <h2>hello</h2>
+          //     </Box1>
+          //     <Box1>
+          //       <h2>hello</h2>
+          //     </Box1>
+              // <Link href="http://localhost:3000/collection/new-arrival">
+              //   <Box1>
+              //     <h2>hellojj</h2>
+              //   </Box1>
+              // </Link>
+          //   </Section4Boxes>
+          // );
+          // return (
           <Section4Boxes key={index}>
-            {/* <Hoidoei>{collection.title}</Hoidoei> */}
-
-            <Link href={`/product/${product.handle}`}>
-              <Box1>
-                <h2></h2>
-              </Box1>
-            </Link>
-
             <Box1>
-              <h2>hello</h2>
+              <h2>hellojj</h2>
             </Box1>
-            <Box1>
-              <h2>hello</h2>
-            </Box1>
-            <Link href="http://localhost:3000/collection/new-arrival">
-              <Box1>
-                <h2>hellojj</h2>
-              </Box1>
-            </Link>
           </Section4Boxes>
         );
-      })}
-
-      {/*
-      
-      
-      */}
-
-      <Trending>New Items </Trending>
-      <Find>Find the perfect peace or accessory to finish your outfit</Find>
-
-      {/* 
-      
-      */}
-
-      {collections.map((collection, index) => {
-        const product = collection.products;
-
-        return (
-          <Section4Boxes key={index}>
-            {/* <Hoidoei>{collection.title}</Hoidoei> */}
-
-            <Link href={`/product/${product.handle}`}>
-              <Box1>
-                <h2></h2>
-              </Box1>
-            </Link>
-
-            <Box1>
-              <h2>hello</h2>
-            </Box1>
-            <Box1>
-              <h2>hello</h2>
-            </Box1>
-            <Link href="http://localhost:3000/collection/new-arrival">
-              <Box1>
-                <h2>hellojj</h2>
-              </Box1>
-            </Link>
-          </Section4Boxes>
-        );
-      })}
+      })} */}
+      <Section4Boxes>
+        <Link href="http://localhost:3000/collection/new-arrival">
+          <Box12>
+            <h2>hellojj</h2>
+          </Box12>
+        </Link>
+        <Link href="http://localhost:3000/collection/new-arrival">
+          <Box1>
+            <h2>hellojj</h2>
+          </Box1>
+        </Link>
+        <Link href="http://localhost:3000/collection/new-arrival">
+          <Box1>
+            <h2>hellojj</h2>
+          </Box1>
+        </Link>
+        <Link href="http://localhost:3000/collection/new-arrival">
+          <Box1>
+            <h2>hellojj</h2>
+          </Box1>
+        </Link>
+      </Section4Boxes>
+      <Section4Boxes>
+        <Link href="http://localhost:3000/collection/new-arrival">
+          <Box1>
+            <h2>hellojj</h2>
+          </Box1>
+        </Link>
+        <Link href="http://localhost:3000/collection/new-arrival">
+          <Box1>
+            <h2>hellojj</h2>
+          </Box1>
+        </Link>
+        <Link href="http://localhost:3000/collection/new-arrival">
+          <Box1>
+            <h2>hellojj</h2>
+          </Box1>
+        </Link>
+        <Link href="http://localhost:3000/collection/new-arrival">
+          <Box1>
+            <h2>hellojj</h2>
+          </Box1>
+        </Link>
+      </Section4Boxes>
 
       <Footer />
     </>

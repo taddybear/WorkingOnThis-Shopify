@@ -8,6 +8,13 @@ const Nav = styled.nav`
   align-items: center;
   color: white;
   justify-content: space-between;
+  width: 100%;
+
+  @media screen and (max-width: 690px) {
+    height: 120px;
+
+    width: 35.5rem;
+  }
 `;
 
 const StyledLink = styled.a`

@@ -10,6 +10,13 @@ const Hero1 = styled.div`
   background: #fff;
   background-image: url("home.png");
   z-index: 9999;
+  width: 100%;
+
+  @media screen and (max-width: 790px) {
+    height: 1100px;
+
+    width: 35.5rem;
+  }
 `;
 
 const Heading = styled.div`

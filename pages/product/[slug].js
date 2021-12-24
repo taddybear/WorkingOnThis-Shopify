@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import client from "../../Shopify/Shopify";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Router from "next/router";
 
 const TotalColum = styled.div`
   display: flex;
@@ -128,20 +129,22 @@ const ProductPage = ({ product }) => {
   const [amount, setAmount] = useState(1);
   const [checkout, setCheckout] = useState(null);
   const [checkoutAsItem, setCheckoutAsItem] = useState(false);
-  const variant = product.variants[0];
+  const variant = product?.variants[0];
   useEffect(() => {
     if (typeof window !== "undefined") {
       const tempCheckout = getDataFromStorage("checkout");
-      tempCheckout.lineItems &&
-        tempCheckout.lineItems.forEach((lineItem) => {
-          if (lineItem.title === product.title) {
-            setAmount(lineItem.quantity);
-            checkoutAsItem(true);
-          }
-        });
+      if (tempCheckout) {
+        tempCheckout?.lineItems &&
+          tempCheckout.lineItems.forEach((lineItem) => {
+            if (lineItem.title === product.title) {
+              setAmount(lineItem.quantity);
+              setCheckoutAsItem(true);
+            }
+          });
 
-      setCheckout(tempCheckout);
-      console.log("this is useEffect log ==>", tempCheckout);
+        setCheckout(tempCheckout);
+        console.log("this is useEffect log ==>", tempCheckout);
+      }
     }
   }, []);
 
@@ -207,19 +210,19 @@ const ProductPage = ({ product }) => {
             width="400"
             height="400"
             fill="responsive"
-            src={product.images[0].src}
+            src={product?.images[0].src}
           />
         </Left>
         <OverRoll>
           <Right>
-            {product.title}
+            {product?.title}
             <br />
             <br />
 
-            <PrDescription>{product.description}</PrDescription>
+            <PrDescription>{product?.description}</PrDescription>
             <br />
             <Price>
-              {variant.priceV2.currencyCode} € {variant.priceV2.amount}
+              {variant?.priceV2.currencyCode} € {variant?.priceV2.amount}
             </Price>
             <Row>
               <Border>
@@ -228,7 +231,14 @@ const ProductPage = ({ product }) => {
                 <Minus onClick={() => setAmount(amount - 1)}>-</Minus>
               </Border>
               <Button
-                onClick={!checkoutAsItem ? addItemToCart : updateCheckout}
+                // onClick={!checkoutAsItem ? addItemToCart : updateCheckout}
+                type="button"
+                onClick={
+                  !checkoutAsItem
+                    ? addItemToCart
+                    : (updateCheckout) => Router.push("/cart")
+                }
+                // i need to click 2 times fix this
               >
                 Buy Now{" "}
               </Button>
@@ -241,19 +251,19 @@ const ProductPage = ({ product }) => {
           width="100"
           height="100"
           fill="responsive"
-          src={product.images[0].src}
+          src={product?.images[1].src}
         />
         <Image
           width="100"
           height="100"
           fill="responsive"
-          src={product.images[0].src}
+          src={product?.images[1].src}
         />
         <Image
           width="100"
           height="100"
           fill="responsive"
-          src={product.images[0].src}
+          src={product?.images[1].src}
         />
       </LeftSmall>
       <Footer />
