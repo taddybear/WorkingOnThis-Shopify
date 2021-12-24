@@ -9,12 +9,16 @@ const Nav = styled.nav`
   color: white;
   justify-content: space-between;
   width: 100%;
+  list-style: none;
+  /* display: inline-block; */
+  box-sizing: border-box;
+  overflow: hidden;
 
-  @media screen and (max-width: 690px) {
+  /* @media screen and (max-width: 690px) {
     height: 120px;
 
     width: 35.5rem;
-  }
+  } */
 `;
 
 const StyledLink = styled.a`

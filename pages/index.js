@@ -8,12 +8,24 @@ import { useEffect, useState } from "react";
 import client from "../Shopify/Shopify";
 import styled from "styled-components";
 import Link from "next/link";
+import {
+  Box5,
+  Box6,
+  Box7,
+  Box8,
+  Box9,
+  Box10,
+  Box11,
+  Box12,
+} from "../components/ImagesSize";
 
 const Container = styled.div`
   display: flex;
+  width: 100%;
   @media only screen and (max-width: 900px) {
     /* it place the items in vertical direction */
     flex-direction: column;
+    width: 100%;
   }
 `;
 
@@ -59,7 +71,7 @@ const BoxPic2 = styled.div`
 `;
 
 const DivOverall = styled.div`
-  width: 550px;
+  width: 100%;
   height: 500px;
 `;
 
@@ -108,21 +120,6 @@ const Section4Boxes = styled.div`
 
 const Box1 = styled.div`
   background-image: url("home.png");
-  width: 100%;
-  height: 300px;
-  /* background-color: blue; */
-  padding: 10px;
-  margin: 20px;
-  box-sizing: border-box;
-  font-size: 30px;
-  flex-flow: wrap;
-  cursor: pointer;
-  @media screen and (max-width: 1200px) {
-    width: 92%;
-  }
-`;
-const Box12 = styled.div`
-  background-image: url("/af689587-900x900.jpeg");
   width: 100%;
   height: 300px;
   /* background-color: blue; */
@@ -246,46 +243,46 @@ const Home = ({ products, collections }) => {
       })} */}
       <Section4Boxes>
         <Link href="http://localhost:3000/collection/new-arrival">
-          <Box12>
+          <Box5>
             <h2>hellojj</h2>
-          </Box12>
+          </Box5>
         </Link>
         <Link href="http://localhost:3000/collection/new-arrival">
-          <Box1>
+          <Box6>
             <h2>hellojj</h2>
-          </Box1>
+          </Box6>
         </Link>
         <Link href="http://localhost:3000/collection/new-arrival">
-          <Box1>
+          <Box7>
             <h2>hellojj</h2>
-          </Box1>
+          </Box7>
         </Link>
         <Link href="http://localhost:3000/collection/new-arrival">
-          <Box1>
+          <Box8>
             <h2>hellojj</h2>
-          </Box1>
+          </Box8>
         </Link>
       </Section4Boxes>
       <Section4Boxes>
         <Link href="http://localhost:3000/collection/new-arrival">
-          <Box1>
+          <Box9>
             <h2>hellojj</h2>
-          </Box1>
+          </Box9>
         </Link>
         <Link href="http://localhost:3000/collection/new-arrival">
-          <Box1>
+          <Box10>
             <h2>hellojj</h2>
-          </Box1>
+          </Box10>
         </Link>
         <Link href="http://localhost:3000/collection/new-arrival">
-          <Box1>
+          <Box11>
             <h2>hellojj</h2>
-          </Box1>
+          </Box11>
         </Link>
         <Link href="http://localhost:3000/collection/new-arrival">
-          <Box1>
+          <Box12>
             <h2>hellojj</h2>
-          </Box1>
+          </Box12>
         </Link>
       </Section4Boxes>
 
